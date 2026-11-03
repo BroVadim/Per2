@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отчёт ЦК по АГиГИС — 2026</title>
+<style>
+:root{
+  --green:#21A038; --green-dark:#127227; --dark:#0F2A1D;
+  --ink:#17222B; --muted:#5B6B76; --line:#DCE5E0;
+  --bg:#F6F9F7; --card:#fff;
+  --warn:#E8A33D; --risk:#D64545;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#E7EDEA;color:var(--ink);overflow:hidden}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:none;padding:48px 68px 88px;background:linear-gradient(135deg,#fff,var(--bg))}
+.slide.active{display:flex;flex-direction:column}
+.slide::before{content:"";position:absolute;left:0;top:0;width:10px;height:100%;background:linear-gradient(180deg,var(--green),#0E7A28)}
+.kicker{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+h1{font-size:44px;line-height:1.15;color:var(--dark);max-width:1150px}
+h2{font-size:31px;line-height:1.2;color:var(--dark);margin-bottom:8px}
+h3{font-size:19px;color:var(--dark);margin-bottom:8px}
+p{font-size:17px;line-height:1.5}
+.subtitle{font-size:21px;color:var(--muted);margin-top:16px}
+.content{flex:1;min-height:0;overflow:auto;padding-right:10px;margin-top:12px}
+.content::-webkit-scrollbar{width:8px}
+.content::-webkit-scrollbar-thumb{background:#C7D3CD;border-radius:8px}
+.grid{display:grid;gap:16px}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px 20px;box-shadow:0 8px 22px rgba(15,42,29,.05)}
+.accent{border-left:6px solid var(--green)}
+.warn{border-left:6px solid var(--warn)}
+.risk{border-left:6px solid var(--risk)}
+.tag{display:inline-block;background:#E8F5EC;color:var(--green-dark);font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+ul{padding-left:20px}
+li{font-size:16px;line-height:1.45;margin:6px 0}
+li ul{margin-top:4px}
+li ul li{font-size:15px;color:#3A4A54}
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:3px;background:var(--green);border-radius:3px}
+.event{position:relative;margin-bottom:13px}
+.event::before{content:"";position:absolute;left:-24px;top:5px;width:12px;height:12px;background:#fff;border:3px solid var(--green);border-radius:50%}
+.date{font-weight:800;color:var(--green-dark);font-size:14px}
+.event-title{font-weight:700;font-size:16px;margin:2px 0}
+.event-text{font-size:15px;color:#44535C;line-height:1.4}
+.footer{position:absolute;left:68px;right:68px;bottom:22px;display:flex;justify-content:space-between;color:var(--muted);font-size:12px;border-top:1px solid var(--line);padding-top:10px}
+.counter{font-weight:800;color:var(--dark)}
+.nav{position:fixed;right:24px;bottom:18px;display:flex;gap:8px;z-index:20}
+.nav button{width:42px;height:42px;border:0;border-radius:50%;background:var(--dark);color:#fff;font-size:19px;cursor:pointer}
+.nav button:hover{background:var(--green)}
+.progress{position:fixed;left:0;bottom:0;height:5px;background:var(--green);width:0;transition:.25s;z-index:30}
+.metric{background:#F0F7F2;border:1px solid #CFE5D6;border-radius:13px;padding:14px;text-align:center}
+.metric b{display:block;font-size:31px;color:var(--green-dark)}
+.metric span{font-size:13px;color:var(--muted);line-height:1.3;display:block;margin-top:4px}
+.note{background:#FFF7E8;border:1px solid #F0D9A8;border-left:6px solid var(--warn);border-radius:11px;padding:13px 16px;font-size:16px;line-height:1.45}
+.conclusion{background:#E8F5EC;border:1px solid #BFE2C9;border-left:6px solid var(--green);border-radius:11px;padding:14px 18px;font-size:17px;font-weight:700;color:#0F5C20}
+.plus,.minus{border-radius:12px;padding:16px 18px}
+.plus{background:#F0F7F2;border:1px solid #C9E3D1}
+.minus{background:#FFF3F3;border:1px solid #F2C9C9}
+.plus h3{color:var(--green-dark)}
+.minus h3{color:#B23434}
+@media(max-width:950px){.slide{padding:30px 22px 78px}h1{font-size:29px}h2{font-size:23px}.c2,.c3,.c4{grid-template-columns:1fr}.footer{left:22px;right:22px}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide active">
+  <div class="content" style="display:flex;flex-direction:column;justify-content:center">
+    <div class="kicker">Отчётный период — 2026 год</div>
+    <h1>Отчёт Центра Компетенций по Анализу геоданных и Геоинформационных систем<br>(ЦК по АГиГИС)</h1>
+    <p class="subtitle">Ключевые активности, исследования, разработка инструментов и применение геоаналитики в аудиторских проверках</p>
+  </div>
+  <div class="footer"><span>ЦК по АГиГИС</span><span>2026 год</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Summary</div>
+  <h2>Ключевые активности ЦК по АГиГИС</h2>
+  <div class="content">
+    <div class="grid c2">
+      <div class="card accent">
+        <h3>1. В зоне внимания ЦК</h3>
+        <ul>
+          <li>Изменения в категорировании геоданных</li>
+          <li>Доступность сервисов SberGeoData в ЛЗ КАП</li>
+          <li>Исследование применения агентного подхода по работе с чувствительными геоданными</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>2. Разработка аналогов функций SberGeoData</h3>
+        <ul>
+          <li>Нормализатор адресов</li>
+          <li>Прямой геокодер</li>
+          <li>Модульный ГИС-сервис</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <h3>3. Применение анализа геоданных в аудиторских проверках</h3>
+        <p>Статистика применения геоаналитики, новые инструменты, RnD-проекты и примеры результатов аудиторских проверок.</p>
+      </div>
+      <div class="card accent">
+        <h3>4. Популяризация ЦК среди сотрудников</h3>
+        <p>Митап «Новое в категорировании и обработке геоданных в рамках аудиторских проверок».</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Содержание</span><span class="counter">2 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">В зоне внимания ЦК</div>
+  <h2>Изменения подходов к обработке геоданных в Банке</h2>
+  <div class="content">
+    <div class="card accent" style="margin-bottom:16px">
+      <p><b>Основная цель:</b> сохранение службой внутреннего аудита возможностей обработки геоданных во внутренней сети Банка.</p>
+    </div>
+    <div class="grid c2">
+      <div class="card warn">
+        <div class="tag">Вызов 1</div>
+        <h3>Изменение категорирования геоданных</h3>
+        <p>В рамках проекта Банка по созданию системы управления доступом к данным в ЛЗ КАП (R0).</p>
+        <ul>
+          <li>Определить число сотрудников управления службы внутреннего аудита, имеющих право работать с данными категории R0, для указания в приказе президента.</li>
+          <li>Найти способы агентной обработки геоданных.</li>
+        </ul>
+      </div>
+      <div class="card risk">
+        <div class="tag">Вызов 2</div>
+        <h3>Вывод сервисов из эксплуатации</h3>
+        <p>Признание сервисов SberGeoData и MatchBox нецелевыми и вывод из эксплуатации АС с признаком ИТ-услуги «КАП809 Геоданные».</p>
+        <ul><li>Найти альтернативные варианты обработки геоданных во внутренней сети.</li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>В зоне внимания ЦК</span><span class="counter">3 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">В зоне внимания ЦК</div>
+  <h2>Изменения в категорировании геоданных</h2>
+  <div class="content">
+    <div class="grid c2">
+      <div class="card">
+        <h3>Дорожная карта</h3>
+        <div class="timeline">
+          <div class="event"><div class="date">16.02.2026</div><div class="event-title">Решение Комитета по рискам группы</div><div class="event-text">Изменение реестра чувствительных данных.</div></div>
+          <div class="event"><div class="date">14.05.2026</div><div class="event-title">Backlog «Сделано в ОАПСО»</div><div class="event-text">RnD-спринт: «Анализ влияния изменений в категорирование ГЕОданных на аудиторские проекты».</div></div>
+          <div class="event"><div class="date">24.06.2026</div><div class="event-title">АрхСовет СВА</div><div class="event-text">Доклад «Об изменениях категорирования геоданных в рамках проекта Банка по созданию системы управления доступом к данным в ЛЗ КАП».</div></div>
+          <div class="event"><div class="date">22.07.2026</div><div class="event-title">АрхСовет СВА</div><div class="event-text">Доклад «Исполнение поручения по определению подходов к работе с данными категории R0».</div></div>
+          <div class="event"><div class="date">19.10.2026</div><div class="event-title">Утвержден процесс П5055</div><div class="event-text">«Присвоение и актуализация уровня доступа субъекта КАП в Единой системе проектирования ARIS».</div></div>
+          <div class="event"><div class="date">Октябрь 2026</div><div class="event-title">Проект распоряжения</div><div class="event-text">Формируется проект распоряжения о прохождении сотрудниками УВА процедуры СПФИ для получения доступа к данным R0.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card accent" style="margin-bottom:14px">
+          <h3>Выполненные работы</h3>
+          <p style="margin-bottom:6px">Работы выполнены командами: <b>ЦК по АГиГИС, ОАИТ и ОРЦД</b>.</p>
+          <ul>
+            <li>Отмечена потребность УВА в геоданных R0.</li>
+            <li>Своевременно идентифицированы риски: УВА не включено в периметр подразделений, которым требуется доступ к R0.</li>
+            <li>Представлены предложения по подходам к определению количества пользователей данных категории R0 в УВА.</li>
+          </ul>
+        </div>
+        <div class="card" style="margin-bottom:14px">
+          <h3>Решения АрхСовета</h3>
+          <ul>
+            <li>Доступ к R0 предоставлять по принципу: «У кого есть доступ к данным категории R1, тем дать доступ к данным категории R0».</li>
+            <li>Провести эксперименты по внедрению агентного подхода при работе с чувствительными геоданными.</li>
+          </ul>
+        </div>
+        <div class="note"><b>В зоне внимания ЦК:</b> доступ сотрудников УВА к данным R0 (март 2027); внедрение агентного подхода при работе с чувствительными данными.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Изменения в категорировании геоданных</span><span class="counter">4 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">В зоне внимания ЦК</div>
+  <h2>Доступность сервисов SberGeoData в ЛЗ КАП — 1/2</h2>
+  <div class="content">
+    <div class="grid c2">
+      <div class="card">
+        <h3>Дорожная карта</h3>
+        <div class="timeline">
+          <div class="event"><div class="date">24.06.2026</div><div class="event-title">Доклад на АрхСовете СВА</div><div class="event-text">«О переходе СВА с ЛДЗ 3.0 на DataLab PRO».</div></div>
+          <div class="event"><div class="date">31.07.2026</div><div class="event-title">СЗ ЦА/2562245-26, Распоряжение ЦА-387/55-РП</div><div class="event-text">«Вывод из эксплуатации АС с признаком ИТ-услуг».</div></div>
+          <div class="event"><div class="date">31.07.2026</div><div class="event-title">СЗ УВА ЦА-26-ВН/1153</div><div class="event-text">«О работе с геоданными в лабораторной зоне КАП».</div></div>
+          <div class="event"><div class="date">19.10.2026</div><div class="event-title">Доступ к API 2ГИС</div><div class="event-text">В рамках СЗ УВА ЦА-26-ВН/1153 получен доступ к альтернативному решению — API 2ГИС.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="card risk" style="margin-bottom:14px">
+          <h3>Выявленная ситуация</h3>
+          <ul>
+            <li>SberGeoData и Matchbox признаны нецелевыми и удалены из пространства КАП.</li>
+            <li>В пространстве отсутствуют альтернативы для геокодирования.</li>
+            <li>Геоданные планируется выносить во внешний сегмент сети для обработки с помощью сторонних API в сети Интернет.</li>
+          </ul>
+        </div>
+        <div class="card warn" style="margin-bottom:14px">
+          <h3>Риск</h3>
+          <p>При выносе данных для обработки во внешний сегмент могут возникать риски кибербезопасности.</p>
+        </div>
+        <div class="card accent">
+          <h3>Задачи</h3>
+          <p style="margin-bottom:6px"><b>На SberData:</b></p>
+          <ul>
+            <li>Реализовать целевой клиентский путь и инструменты по работе с геоданными в ЛЗ КАП.</li>
+            <li>Обеспечить доступность SberGeoData и Matchbox на целевом решении DataLab PRO при миграции с ЛДЗ 3.0.</li>
+          </ul>
+          <p style="margin:8px 0 6px"><b>На ЦК по АГиГИС:</b></p>
+          <ul><li>Проработать сценарии работы через AI-ассистента на естественном языке без прямого доступа к данным.</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Доступность сервисов SberGeoData в ЛЗ КАП</span><span class="counter">5 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">В зоне внимания ЦК</div>
+  <h2>Доступность сервисов SberGeoData в ЛЗ КАП — 2/2</h2>
+  <div class="content">
+    <div class="card accent" style="margin-bottom:14px">
+      <p>Получено предложение по использованию альтернативного решения — <b>API 2ГИС</b>. Проведено тестирование доступности в рамках RnD-спринта <b>«Исследование сервисов геокодирования и потоковой обработки геоданных в контуре Банка»</b>.</p>
+    </div>
+    <div class="grid c3" style="margin-bottom:14px">
+      <div class="card"><h3>1. Встреча</h3><p>Проведена встреча с представителями SberData.</p></div>
+      <div class="card"><h3>2. Доступ</h3><p>Выставлена заявка на получение ключа к API 2ГИС.</p></div>
+      <div class="card"><h3>3. Тестирование</h3><p>Проверены сервисы в пространствах Omega, DataLab AI и DataLab PRO.</p></div>
+    </div>
+    <div class="grid c2">
+      <div class="card">
+        <h3>Результаты тестирования</h3>
+        <p><b>API 2ГИС исправно работает</b> в пространствах Omega и DataLab AI.</p>
+        <ul>
+          <li>Геокодирование адресов</li>
+          <li>Классификация адресов</li>
+          <li>Расчёт маршрутов между объектами</li>
+          <li>Поиск по организациям</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <h3>Выявленное отклонение</h3>
+        <p>API 2ГИС <b>не работает</b> в пространстве (на платформе) DataLab PRO.</p>
+        <p style="margin-top:8px">Совместно с ОРЦД выставлено требование на SberData по доработке платформы DataLab PRO для доступа к API 2ГИС.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Тестирование API 2ГИС</span><span class="counter">6 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">В зоне внимания ЦК</div>
+  <h2>Исследование применения агентного подхода<br>по работе с чувствительными геоданными</h2>
+  <div class="content">
+    <div class="card accent" style="margin-bottom:14px">
+      <p><b>08.10.2026</b> на Backlog «Сделано в ОАПСО» открыт RnD-спринт: <b>«Исследование возможности внедрения агентного подхода при работе с чувствительными данными»</b>.</p>
+    </div>
+    <div class="grid c2" style="margin-bottom:14px">
+      <div class="card">
+        <h3>Разработанное решение позволяет</h3>
+        <ul>
+          <li>Производить выгрузку геоданных с их последующей анонимизацией</li>
+          <li>Проводить обратное геокодирование</li>
+          <li>Производить расчёт маршрутов</li>
+          <li>Определять точки концентрации клиентов по геолокации</li>
+        </ul>
+      </div>
+      <div class="card warn">
+        <h3>Ограничение</h3>
+        <p>Агент работает под учетной записью ответственного сотрудника ЦК.</p>
+        <h3 style="margin-top:12px">Перспектива развития</h3>
+        <p>Интеграция в агента возможности обработки геоданных через API 2ГИС.</p>
+      </div>
+    </div>
+    <div class="conclusion">Главный вывод: создание агентов для обработки геоданных на естественном языке возможно.</div>
+  </div>
+  <div class="footer"><span>Агентный подход и чувствительные геоданные</span><span class="counter">7 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Разработка аналогов инструментов SberGeoData</div>
+  <h2>Нормализатор адресов</h2>
+  <div class="content">
+    <div class="card accent" style="margin-bottom:14px">
+      <p>Нормализатор построен на базе open-source Python-библиотеки <b>DeepParse</b> для парсинга адресов. Библиотека использует встроенную LLM-модель и поддерживает адресные форматы более чем <b>60 стран</b>.</p>
+    </div>
+    <div class="grid c2" style="margin-bottom:14px">
+      <div class="card">
+        <h3>Что распознается</h3>
+        <ul>
+          <li>Область</li><li>Район</li><li>Город</li><li>Улица</li><li>Номер дома</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Результаты сравнения</h3>
+        <div class="grid c2" style="gap:10px">
+          <div class="metric"><b>96%</b><span>Точность распознавания адресов с DeepParse</span></div>
+          <div class="metric"><b>85%</b><span>Точность при использовании регулярных выражений</span></div>
+          <div class="metric"><b>82%</b><span>Точность геокодирования после DeepParse</span></div>
+          <div class="metric"><b>70%</b><span>Точность геокодирования после регулярных выражений</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion">DeepParse повышает точность распознавания адресов на 11 п.п. и точность последующего геокодирования на 12 п.п. по сравнению с регулярными выражениями.</div>
+  </div>
+  <div class="footer"><span>Нормализатор адресов</span><span class="counter">8 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Разработка аналогов инструментов SberGeoData</div>
+  <h2>Прямой геокодер</h2>
+  <div class="content">
+    <div class="card accent" style="margin-bottom:14px">
+      <p>Для прямого геокодирования адресов в пространстве КАП разработан собственный геокодер на основе адресов <b>ФИАС</b> — Федеральной информационной адресной системы. В ФИАС содержится более <b>36 млн актуальных адресов России</b>.</p>
+    </div>
+    <div class="grid c3" style="margin-bottom:14px">
+      <div class="card"><h3>Подготовка данных</h3><p>Выгрузка и преобразование базы ФИАС для работы геокодера.</p></div>
+      <div class="card"><h3>Очистка данных</h3><p>Метод очистки с использованием регулярных выражений и библиотеки Pullenti.</p></div>
+      <div class="card"><h3>Поиск и сопоставление</h3><p>Сопоставление с базой геокодера с помощью библиотеки RapidFuzz.</p></div>
+    </div>
+    <div class="grid c2">
+      <div class="plus">
+        <h3>Преимущества</h3>
+        <ul>
+          <li>Высокая скорость работы на больших объёмах данных</li>
+          <li>Исправление опечаток и различных вариантов написания</li>
+          <li>Простота интеграции в ETL-процессы</li>
+        </ul>
+      </div>
+      <div class="minus">
+        <h3>Ограничения</h3>
+        <ul>
+          <li>Отсутствие понимания семантики адреса: сравнение выполняется на уровне строк</li>
+          <li>Чувствительность к отсутствию ключевых компонентов адреса: города, улицы, номера дома</li>
+          <li>Зависимость точности от предварительной нормализации и полноты справочника адресов</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Прямой геокодер</span><span class="counter">9 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Разработка аналогов инструментов SberGeoData</div>
+  <h2>Модульный ГИС-сервис</h2>
+  <div class="content">
+    <div class="card accent" style="margin-bottom:14px">
+      <p>В ЦК по АГиГИС накоплено большое количество инструментов для работы с геоданными. Они находились в разных репозиториях, требовали установки разных библиотек и знаний по разворачиванию рабочего окружения. Поэтому создана <b>единая точка доступа</b> — модульный ГИС-сервис.</p>
+    </div>
+    <div class="grid c2" style="margin-bottom:14px">
+      <div class="card"><h3>Один вход — все инструменты</h3><p>Единая точка доступа ко всем инструментам геоанализа в одном месте: пользователю не нужно искать нужный инструмент.</p></div>
+      <div class="card"><h3>Интегрируемость модулей</h3><p>Модули сервиса могут использоваться в рамках других проектов и задач.</p></div>
+      <div class="card"><h3>Логирование</h3><p>Сбор статистики использования приложений для формирования списка доработок.</p></div>
+      <div class="card"><h3>Адаптивность как основа</h3><p>Сервис готов к будущим запланированным миграциям.</p></div>
+    </div>
+    <div class="conclusion">Модульный ГИС-сервис объединяет инструменты ЦК в едином пространстве и снижает порог входа для пользователей.</div>
+  </div>
+  <div class="footer"><span>Модульный ГИС-сервис</span><span class="counter">10 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Применение анализа геоданных</div>
+  <h2>Анализ геоданных в аудиторских проверках</h2>
+  <div class="content">
+    <div class="grid c4" style="margin-bottom:16px">
+      <div class="metric"><b>35</b><span>P-проектов с использованием геоданных за 2026 год</span></div>
+      <div class="metric"><b>7</b><span>инструментов для работы с геоданными, включая 2 новых</span></div>
+      <div class="metric"><b>5</b><span>RnD-проектов по новым подходам к геоданным</span></div>
+      <div class="metric"><b>75</b><span>запросов на консультацию к AI-помощнику</span></div>
+    </div>
+    <div class="card accent">
+      <h3>Что это дает аудиторским проверкам</h3>
+      <ul>
+        <li>Визуализация пространственных закономерностей и аномалий.</li>
+        <li>Геокодирование адресов и расчет маршрутов.</li>
+        <li>Выявление концентраций операций, локаций и связей между объектами.</li>
+        <li>Формирование доказательной базы за счет картографической аналитики.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>Геоданные в аудиторских проверках</span><span class="counter">11 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Применение анализа геоданных</div>
+  <h2>Примеры применения в аудиторских проверках</h2>
+  <div class="content">
+    <div class="grid c2">
+      <div class="card accent">
+        <div class="tag">Пример 1</div>
+        <h3>Выявление сомнительных операций клиентов — ФЛ иностранных граждан</h3>
+        <p><b>Инструмент:</b> Картографический сервис ЦК по АГиГИС — визуализация тепловых карт и геохэшей.</p>
+        <h3 style="margin-top:12px">Результаты</h3>
+        <ul>
+          <li>Установлена связь между клиентами — иностранными гражданами по концентрации входа в СБОЛ.</li>
+          <li>Выявлены локации массового снятия наличных.</li>
+        </ul>
+      </div>
+      <div class="card accent">
+        <div class="tag">Пример 2</div>
+        <h3>Аудиторская проверка МК ООО «Роборитейл» и дочерних компаний</h3>
+        <p><b>Инструменты:</b> SGD Stream Client для геокодирования адресов доставки курьеров и OSMNX для расчёта маршрутов между геокодированными адресами.</p>
+        <h3 style="margin-top:12px">Результаты</h3>
+        <ul>
+          <li>Выявлено характерное для мелких заказов повторение маршрутов доставки.</li>
+          <li>Маршруты вели на адреса, расположенные поблизости от склада или совпадающие с адресом ЦФЗ.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Примеры аудиторских проверок</span><span class="counter">12 / 13</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Популяризация ЦК среди сотрудников</div>
+  <h2>Митап «Новое в категорировании и обработке геоданных<br>в рамках аудиторских проверок»</h2>
+  <div class="content">
+    <div class="grid c2" style="margin-bottom:16px">
+      <div class="card accent">
+        <h3>Темы митапа</h3>
+        <ul>
+          <li>Текущий набор инструментов ЦК по АГиГИС.</li>
+          <li>Практическое применение работы с геоданными в ходе аудиторских проверок.</li>
+          <li>Ограничения в работе с геоданными в связи с внедрением категории R0.</li>
+        </ul>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;text-align:center">
+        <div class="metric" style="border:0;background:transparent">
+          <b style="font-size:64px">191</b>
+          <span style="font-size:17px">сотрудник СВА принял участие в митапе</span>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion">Митап позволил распространить экспертизу ЦК, показать практические кейсы и информировать сотрудников СВА об изменениях в работе с геоданными.</div>
+  </div>
+  <div class="footer"><span>Популяризация ЦК</span><span class="counter">13 / 13</span></div>
+</section>
+
+</div>
+
+<div class="nav">
+  <button id="prev" aria-label="Предыдущий слайд">‹</button>
+  <button id="next" aria-label="Следующий слайд">›</button>
+</div>
+<div class="progress" id="progress"></div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0;
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,x)=>s.classList.toggle('active',x===i));
+  document.getElementById('progress').style.width=((i+1)/slides.length*100)+'%';
+}
+document.getElementById('prev').onclick=()=>show(i-1);
+document.getElementById('next').onclick=()=>show(i+1);
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1)}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}
+  if(e.key==='Home')show(0);
+  if(e.key==='End')show(slides.length-1);
+});
+document.addEventListener('click',e=>{
+  if(e.target.closest('.nav'))return;
+  if(e.clientX>window.innerWidth*.7)show(i+1);
+  else if(e.clientX<window.innerWidth*.3)show(i-1);
+});
+show(0);
+</script>
+</body>
+</html>
